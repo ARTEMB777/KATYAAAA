@@ -11,18 +11,23 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh; /* Висота повинна бути не менша за висоту екрану */
   overflow: hidden;
 }
 
 .container {
   background: #fff; /* Білосніжний фон */
-  padding: 40px 60px;
+  padding: 20px 30px; /* Зменшені відступи для адаптивності */
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
   max-width: 800px;
   width: 100%;
+  max-height: 100vh; /* Обмежує висоту контейнера */
+  overflow-y: auto; /* Прокручування контенту, якщо він не поміщається */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Розміщує елементи на всю висоту */
 }
 
 h1 {
@@ -31,14 +36,14 @@ h1 {
   font-family: 'Great Vibes', cursive;
   letter-spacing: 5px;
   text-transform: uppercase;
-  margin-bottom: 30px;
+  margin-bottom: 20px; /* Зменшення відступів */
   animation: fadeInTitle 2s ease-out;
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px; /* Зменшення проміжку між елементами */
   text-align: center;
 }
 
@@ -49,17 +54,16 @@ h1 {
 }
 
 .verse-group .line {
-  font-size: 1.5em;
-  line-height: 1.7;
+  font-size: 1.3em; /* Зменшення розміру шрифта */
+  line-height: 1.5;
   color: #6b6b6b; /* М'який сірий для рядків */
-  margin-bottom: 15px;
+  margin-bottom: 10px; /* Зменшення відступів */
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInLine 2s ease-out forwards;
   font-family: 'Merienda', cursive;
 }
 
-/* Анімація для кожного рядка */
 @keyframes fadeInGroup {
   0% {
     opacity: 0;
@@ -82,94 +86,6 @@ h1 {
   }
 }
 
-/* Затримка для кожного рядка */
-.verse-group .line:nth-child(1) {
-  animation-delay: 0.2s;
-}
-.verse-group .line:nth-child(2) {
-  animation-delay: 0.4s;
-}
-.verse-group .line:nth-child(3) {
-  animation-delay: 0.6s;
-}
-.verse-group .line:nth-child(4) {
-  animation-delay: 0.8s;
-}
-
-.hearts {
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.heart {
-  width: 50px; /* Збільшення розміру */
-  height: 50px; /* Збільшення розміру */
-  background-color: #ff6f61; /* М'який червоний */
-  position: relative;
-  border-radius: 50% 50% 0 0;
-  animation: float 6s infinite ease-in-out;
-  opacity: 0.8;
-  margin: 0 20px;
-  display: inline-block;
-}
-
-.heart::before,
-.heart::after {
-  content: '';
-  width: 50px; /* Збільшення розміру */
-  height: 50px; /* Збільшення розміру */
-  background-color: #ff6f61;
-  position: absolute;
-  border-radius: 50%;
-}
-
-/* Позиціонування псевдоелементів */
-.heart::before {
-  top: -25px;
-  left: 0;
-}
-
-.heart::after {
-  top: 0;
-  left: 25px;
-}
-
-/* Анімація для сердечок */
-@keyframes float {
-  0% {
-    transform: translateY(0) scale(1) rotate(-45deg);
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-400px) scale(1.5) rotate(-45deg);
-    opacity: 0;
-  }
-}
-
-/* Затримка для кожного сердечка */
-.heart:nth-child(1) {
-  left: 25%;
-  animation-delay: 0s;
-}
-
-.heart:nth-child(2) {
-  left: 50%;
-  animation-delay: 2s;
-}
-
-.heart:nth-child(3) {
-  left: 75%;
-  animation-delay: 4s;
-}
-
 @keyframes fadeInTitle {
   0% {
     opacity: 0;
@@ -181,7 +97,33 @@ h1 {
   }
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 15px; /* Зменшення відступів */
+  }
 
+  h1 {
+    font-size: 2.5em; /* Зменшення шрифта для заголовку */
+  }
+
+  .verse-group .line {
+    font-size: 1.2em; /* Зменшення шрифта для рядків */
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2em; /* Ще менший шрифт для заголовку */
+  }
+
+  .verse-group .line {
+    font-size: 1.1em; /* Ще менший шрифт для рядків */
+  }
+
+  .container {
+    padding: 10px; /* Зменшення відступів на маленьких екранах */
+  }
+}
 
 
 
